@@ -44,6 +44,7 @@ $(GENERATED_CRDS): $(CONTROLLER_GEN) $(GENERATED) $(CRD_SOURCES)
 	$(CONTROLLER_GEN) crd:preserveUnknownFields=false paths=./pkg/apis/... output:crd:dir=docs || /bin/true || true
 	mv docs/zalando.org_stacksets.yaml docs/stackset_crd.yaml
 	mv docs/zalando.org_stacks.yaml docs/stack_crd.yaml
+	mv docs/zalando.org_tests.yaml docs/test_crd.yaml
 	# workaround for CRD issue with k8s 1.18 & controller-gen 0.3
 	# ref: https://github.com/kubernetes/kubernetes/issues/91395
 	perl -i -p0e 's/\s*x-kubernetes-list-map-keys:.*?x-kubernetes-list-type: map//seg' $(GENERATED_CRDS)

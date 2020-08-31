@@ -379,3 +379,24 @@ type StackList struct {
 
 	Items []Stack `json:"items"`
 }
+
+// +genclient
+// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+
+// Test
+// +k8s:deepcopy-gen=true
+type Test struct {
+	metav1.TypeMeta   `json:",inline"`
+	metav1.ObjectMeta `json:"metadata,omitempty"`
+
+	Spec TestSpec `json:"spec"`
+}
+
+// TestSpec is the spec part of the Stack.
+// +k8s:deepcopy-gen=true
+type TestSpec struct {
+	// Number of desired pods. This is a pointer to distinguish between explicit
+	// zero and not specified. Defaults to 1.
+	// +optional
+	Replicas *int32 `json:"replicas,omitempty"`
+}
